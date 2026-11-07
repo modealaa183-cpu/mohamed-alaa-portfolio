@@ -1,0 +1,127 @@
+[
+  {
+    "slug": "almehwar-dashboard",
+    "title": "AlMehwar Social Intelligence",
+    "tag": "MARKETING ANALYTICS",
+    "category": "Analytics",
+    "status": "Internal / Anonymized",
+    "summary": "Connecting fragmented marketing signals into a clearer reporting experience.",
+    "challenge": "Performance data lived across different channels and reporting surfaces, making it difficult to compare trends consistently.",
+    "solution": "A consolidated reporting environment for exploring social performance, website insights and campaign comparisons.",
+    "role": "Analytics logic, dashboard architecture, reporting workflows and AI-assisted implementation.",
+    "tools": [
+      "Google Sheets",
+      "Apps Script",
+      "GA4",
+      "Search Console",
+      "APIs"
+    ],
+    "features": [
+      "Cross-platform reporting",
+      "Month-over-month comparisons",
+      "Content and campaign analysis",
+      "Reporting workflows"
+    ],
+    "color": "cyan",
+    "number": "01"
+  },
+  {
+    "slug": "wedjat",
+    "title": "WEDJAT",
+    "tag": "INDEPENDENT PRODUCT",
+    "category": "Products",
+    "status": "Evolving product",
+    "summary": "A marketing intelligence product concept built around connected data and clearer decisions.",
+    "challenge": "Brands and agencies need a simpler way to make sense of signals spread across multiple marketing tools.",
+    "solution": "An evolving SaaS experience exploring multi-brand reporting, integrations and AI-assisted recommendations.",
+    "role": "Product direction, experience design and AI-assisted implementation.",
+    "tools": [
+      "Next.js",
+      "Vercel",
+      "Supabase",
+      "OAuth"
+    ],
+    "features": [
+      "Multi-brand workspace direction",
+      "Reporting workflows",
+      "Marketing integration architecture",
+      "Product design iteration"
+    ],
+    "color": "violet",
+    "number": "02",
+    "link": "https://wedjatapp.com"
+  },
+  {
+    "slug": "clinics-landing-page",
+    "title": "Clinics & Appointments",
+    "tag": "HEALTHCARE EXPERIENCE",
+    "category": "Web",
+    "status": "Project showcase",
+    "summary": "A clearer way for visitors to explore clinics and find the information they need.",
+    "challenge": "Navigating clinic specialties and schedules can be frustrating when details are difficult to discover.",
+    "solution": "A responsive directory experience organized around clinics, specialty pages and clear contact pathways.",
+    "role": "Page planning, experience design and AI-assisted UI implementation.",
+    "tools": [
+      "Responsive UI",
+      "UX Design",
+      "Web Interfaces"
+    ],
+    "features": [
+      "Clinic directory",
+      "Specialty pages",
+      "Search experience",
+      "Mobile navigation"
+    ],
+    "color": "mint",
+    "number": "03"
+  },
+  {
+    "slug": "badge-generator",
+    "title": "Custom Badge Generator",
+    "tag": "WORKFLOW TOOL",
+    "category": "Tools",
+    "status": "Iterative prototype",
+    "summary": "Turning repetitive badge preparation into a more manageable digital workflow.",
+    "challenge": "Manually arranging individual photos and details on badges is repetitive and time-consuming.",
+    "solution": "A tool exploring image upload, image placement, attendee details and export-friendly layouts.",
+    "role": "Workflow design, interface planning and iterative implementation.",
+    "tools": [
+      "Web UI",
+      "Image Handling",
+      "Workflow Design"
+    ],
+    "features": [
+      "Image upload",
+      "Positioning and zoom controls",
+      "Personalized fields",
+      "Output workflow exploration"
+    ],
+    "color": "amber",
+    "number": "04"
+  },
+  {
+    "slug": "marketing-analytics",
+    "title": "Content & Performance Operations",
+    "tag": "SOCIAL MEDIA INTELLIGENCE",
+    "category": "Analytics",
+    "status": "Experience / Sample workflow",
+    "summary": "Turning channel-level performance into structured insights for better content decisions.",
+    "challenge": "High volumes of platform metrics can obscure the lessons behind content performance.",
+    "solution": "Repeatable approaches to content evaluation, channel reporting and campaign analysis.",
+    "role": "Social media operations, reporting and interpretation.",
+    "tools": [
+      "Meta Business Suite",
+      "TikTok Analytics",
+      "YouTube Analytics",
+      "Google Sheets"
+    ],
+    "features": [
+      "Content analysis",
+      "Platform comparisons",
+      "Competitor reporting",
+      "Actionable insights"
+    ],
+    "color": "rose",
+    "number": "05"
+  }
+]

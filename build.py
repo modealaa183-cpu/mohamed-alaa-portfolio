@@ -30,6 +30,21 @@ if wedjat_archive.is_file():
    target.parent.mkdir(parents=True,exist_ok=True)
    target.write_bytes(archive_file.read(name))
  wedjat_ready=True
+# Approved original screenshots of the AlMehwar outpatient clinics website.
+clinics_archive=root/'clinics_real_mockups.zip'
+clinics_ready=False
+if clinics_archive.is_file():
+ clinics_files={f'assets/previews/clinics-real/{name}.webp' for name in
+                ('home-hero','specialties-grid','clinic-detail','booking-modal')}
+ with zipfile.ZipFile(clinics_archive) as z:
+  present={item.filename for item in z.infolist() if not item.is_dir()}
+  if not clinics_files.issubset(present):
+   raise RuntimeError('Clinics screenshots ZIP is missing required files')
+  for name in clinics_files:
+   dest=root/name
+   dest.parent.mkdir(parents=True,exist_ok=True)
+   dest.write_bytes(z.read(name))
+ clinics_ready=True
 projects=[
  dict(slug='identyra-studio',title='Identyra Studio',tag='EMPLOYEE ID AUTOMATION',category='Products',status='Product website & ID studio',summary='A branded employee ID and certificate service with a self-service card studio, Excel uploads and image preparation.',challenge='Preparing employee ID cards from spreadsheets and mixed photo files takes repetitive manual work.',solution='An end-to-end identity card workflow: configure the brand, import employee data and photos, review individual cards and export print-ready files.',role='Product concept, UX design, brand identity and AI-assisted implementation.',tools=['Product Website','Excel Import','Photo Processing','PNG / PDF Export'],features=['Arabic landing page with services and pricing','Company branding and logo upload','Employee spreadsheet and photo import','Card preview, photo adjustment and export'],color='mint',number='01',link='https://identyra-studio.vercel.app/business.html#faq'),
  dict(slug='almehwar-dashboard',title='AlMehwar Social Intelligence',tag='MARKETING ANALYTICS',category='Analytics',status='Internal project / anonymized showcase',summary='A real social intelligence command center integrating monthly reporting, platform performance, content analysis and decisions.',challenge='Performance data lived across different channels and reporting surfaces, making it difficult to compare trends consistently.',solution='A consolidated reporting environment for exploring social performance, website insights and campaign comparisons.',role='Analytics logic, dashboard architecture, reporting workflows and AI-assisted implementation.',tools=['Google Sheets','Apps Script','GA4','Search Console','APIs'],features=['Monthly Report and executive KPIs','Platforms and Content Intelligence','Comparisons and Competitors','Recommendations and Data Health'],color='cyan',number='02'),
@@ -58,6 +73,7 @@ def footer(depth=0):
 def preview_path(p):
  if p['slug']=='almehwar-dashboard': return 'assets/previews/almehwar-real/overview.webp'
  if p['slug']=='wedjat' and wedjat_ready: return 'assets/previews/wedjat-real/landing.webp'
+ if p['slug']=='clinics-landing-page' and clinics_ready: return 'assets/previews/clinics-real/home-hero.webp'
  ext='avif' if p['slug']=='identyra-studio' else 'svg'
  return 'assets/previews/'+p['slug']+'.'+ext
 def projectcard(p):
@@ -79,6 +95,10 @@ home=head('Marketing Technology & AI Solutions Specialist','Dashboards, automati
 <section id="contact" class="section container contact-section"><div class="contact-top"><p class="eyebrow"><span class="eyebrow-line"></span> 03 / CONTACT</p><span class="contact-spark">✳</span></div><h2>Have a project<br><em>in mind?</em></h2><p>Let's build something useful.</p><div class="contact-layout"><div class="contact-form-panel"><form id="contact-form" novalidate><div class="field-row"><label>Your name <input name="name" required autocomplete="name" placeholder="Your name"></label><label>Email address <input name="email" type="email" required autocomplete="email" placeholder="you@company.com"></label></div><div class="field-row"><label>Company <small>(optional)</small><input name="company" placeholder="Company / organization"></label><label>What do you need?<select name="service" required><option value="">Select a service</option><option>Marketing Dashboards & Reporting</option><option>AI & Workflow Automation</option><option>Landing Pages & Websites</option><option>Social Media Analytics & Strategy</option><option>AI-Assisted Digital Solutions</option><option>Other / Not sure</option></select></label></div><label>Tell me about the project <textarea name="message" required rows="5" placeholder="What are you looking to solve?"></textarea></label><label>Budget range <small>(optional)</small><select name="budget"><option value="">Prefer to discuss</option><option>Under $500</option><option>$500–$1,500</option><option>$1,500–$5,000</option><option>$5,000+</option></select></label><div class="hidden-trap" aria-hidden="true"><label>Leave empty<input name="website" tabindex="-1" autocomplete="off"></label></div><button class="btn btn-primary" type="submit">Prepare My Inquiry <span>↗</span></button><p class="form-status" id="form-status" role="status">Contact details are not configured yet. This form will never pretend a message was sent.</p></form></div><div class="contact-side"><span class="contact-side-label">CONTACT ME</span><a class="contact-link" data-contact="email" hidden href="#">Email <span>↗</span></a><a class="contact-link" data-contact="whatsapp" hidden href="#">WhatsApp <span>↗</span></a><a class="contact-link" data-contact="linkedin" hidden href="#">LinkedIn <span>↗</span></a><a class="contact-link" data-contact="github" hidden href="#">GitHub <span>↗</span></a><p class="contact-placeholder">Contact links will appear once the real details are added to <code>site.config.json</code>.</p><div class="contact-availability"><span class="live-dot"></span> OPEN TO FREELANCE COLLABORATIONS</div></div></div></section></main>'''+footer()
 (root/'index.html').write_text(home,encoding='utf-8')
 def demo_gallery(p):
+ if p['slug']=='clinics-landing-page' and clinics_ready:
+  pages=[('specialties-grid','Specialties & Clinics'),('clinic-detail','Doctors & Schedules'),('booking-modal','Appointment Booking Flow')]
+  figures=''.join('<figure><img loading="lazy" src="../../assets/previews/clinics-real/'+name+'.webp" alt="Original clinics interface screenshot — '+label+'"><figcaption>'+label+'</figcaption></figure>' for name,label in pages)
+  return '<section class="case-gallery" aria-label="Actual outpatient clinics website screenshots"><h2>Explore the clinics experience</h2><p>Original screenshots from the outpatient clinics website, presented within a consistent browser frame.</p><div class="case-gallery-grid">'+figures+'</div></section>'
  if p['slug']=='wedjat' and wedjat_ready:
   pages=[('features','Platform Features'),('how-it-works','How It Works'),('workspace','Actual Workspace — private labels concealed')]
   figures=''.join('<figure><img loading="lazy" src="../../assets/previews/wedjat-real/'+name+'.webp" alt="Real WEDJAT screenshot: '+label+'"><figcaption>'+label+'</figcaption></figure>' for name,label in pages)

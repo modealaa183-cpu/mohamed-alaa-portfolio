@@ -31,7 +31,7 @@ if wedjat_archive.is_file():
    target.write_bytes(archive_file.read(name))
  wedjat_ready=True
 # Approved original screenshots of the AlMehwar outpatient clinics website.
-clinics_archive=root/'clinics_real_mockups.zip'
+clinics_archive=next((root/name for name in ('clinics_real_mockups.zip','clinics_mockups_github_upload.zip') if (root/name).is_file()),root/'clinics_real_mockups.zip')
 clinics_ready=False
 if clinics_archive.is_file():
  clinics_files={f'assets/previews/clinics-real/{name}.webp' for name in

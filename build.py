@@ -1,5 +1,20 @@
 import json,html,pathlib
 root=pathlib.Path(__file__).parent
+# Unpack user-approved, original dashboard screenshots at build time.
+# GitHub web uploads retain ZIP archives rather than extracting them.
+import zipfile
+archive=root/'almehwar_real_mockups.zip'
+if archive.is_file():
+ expected={f'assets/previews/almehwar-real/{name}.webp' for name in
+           ('overview','monthly-report','content-intelligence','platforms','website-intelligence')}
+ with zipfile.ZipFile(archive) as z:
+  available={item.filename for item in z.infolist() if not item.is_dir()}
+  if not expected.issubset(available):
+   raise RuntimeError('Dashboard archive is missing approved screenshot files')
+  for name in expected:
+   target=root/name
+   target.parent.mkdir(parents=True,exist_ok=True)
+   target.write_bytes(z.read(name))
 projects=[
  dict(slug='identyra-studio',title='Identyra Studio',tag='EMPLOYEE ID AUTOMATION',category='Products',status='Product website & ID studio',summary='A branded employee ID and certificate service with a self-service card studio, Excel uploads and image preparation.',challenge='Preparing employee ID cards from spreadsheets and mixed photo files takes repetitive manual work.',solution='An end-to-end identity card workflow: configure the brand, import employee data and photos, review individual cards and export print-ready files.',role='Product concept, UX design, brand identity and AI-assisted implementation.',tools=['Product Website','Excel Import','Photo Processing','PNG / PDF Export'],features=['Arabic landing page with services and pricing','Company branding and logo upload','Employee spreadsheet and photo import','Card preview, photo adjustment and export'],color='mint',number='01',link='https://identyra-studio.vercel.app/business.html#faq'),
  dict(slug='almehwar-dashboard',title='AlMehwar Social Intelligence',tag='MARKETING ANALYTICS',category='Analytics',status='Internal project / anonymized showcase',summary='A real social intelligence command center integrating monthly reporting, platform performance, content analysis and decisions.',challenge='Performance data lived across different channels and reporting surfaces, making it difficult to compare trends consistently.',solution='A consolidated reporting environment for exploring social performance, website insights and campaign comparisons.',role='Analytics logic, dashboard architecture, reporting workflows and AI-assisted implementation.',tools=['Google Sheets','Apps Script','GA4','Search Console','APIs'],features=['Monthly Report and executive KPIs','Platforms and Content Intelligence','Comparisons and Competitors','Recommendations and Data Health'],color='cyan',number='02'),
